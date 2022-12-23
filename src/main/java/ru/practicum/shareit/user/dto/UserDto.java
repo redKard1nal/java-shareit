@@ -1,19 +1,17 @@
-package ru.practicum.shareit.item.dto;
+package ru.practicum.shareit.user.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-/**
- * TODO Sprint add-controllers.
- */
+import javax.validation.constraints.Email;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @Data
-public class ItemDto {
+public class UserDto {
     String name;
-    String description;
-    Boolean available;
-    Integer request;
+    @Email
+    String email;
 }
