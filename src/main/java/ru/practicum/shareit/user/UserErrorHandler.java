@@ -16,25 +16,25 @@ public class UserErrorHandler {
 
     @ExceptionHandler
     @ResponseStatus(BAD_REQUEST)
-    public String ValidationFailed(final ValidationException e) {
+    public String validationFailed(final ValidationException e) {
         return e.getMessage();
     }
 
     @ExceptionHandler
     @ResponseStatus(FORBIDDEN)
-    public String AccessDenied(final AccessDeniedException e) {
+    public String accessDenied(final AccessDeniedException e) {
         return e.getMessage();
     }
 
     @ExceptionHandler
     @ResponseStatus(NOT_FOUND)
-    public String NotFound(final NotFoundException e) {
+    public String notFound(final NotFoundException e) {
         return e.getMessage();
     }
 
     @ExceptionHandler
     @ResponseStatus(CONFLICT)
-    public String Conflict(final ConflictException e) {
+    public String conflict(final ConflictException e) {
         return e.getMessage();
     }
 }
