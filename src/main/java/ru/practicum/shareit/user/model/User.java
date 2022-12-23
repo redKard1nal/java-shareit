@@ -1,12 +1,11 @@
-package ru.practicum.shareit.item.model;
+package ru.practicum.shareit.user.model;
 
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import ru.practicum.shareit.request.ItemRequest;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Email;
 import java.util.Objects;
 
 /**
@@ -15,22 +14,18 @@ import java.util.Objects;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class Item {
+public class User {
     int id;
-    @NotNull
     String name;
-    @NotNull
-    String description;
-    boolean available;
-    int owner;
-    ItemRequest request;
+    @Email
+    String email;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return id == item.id;
+        User user = (User) o;
+        return id == user.id;
     }
 
     @Override
