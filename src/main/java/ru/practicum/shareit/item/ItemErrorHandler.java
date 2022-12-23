@@ -18,21 +18,21 @@ public class ItemErrorHandler {
     @ExceptionHandler
     @ResponseStatus(BAD_REQUEST)
     public String failValidation(final BadRequestException e) {
-        log.error("Произошла ошибка валидации вещи:\n" + e.getMessage());
+        log.error("Произошла ошибка валидации вещи:\n{}", e.getMessage());
         return e.getMessage();
     }
 
     @ExceptionHandler
     @ResponseStatus(FORBIDDEN)
     public String accessDenied(final AccessDeniedException e) {
-        log.error("Произошла ошибка доступа к вещи:\n" + e.getMessage());
+        log.error("Произошла ошибка доступа к вещи:\n{}", e.getMessage());
         return e.getMessage();
     }
 
     @ExceptionHandler
     @ResponseStatus(NOT_FOUND)
     public String notFound(final NotFoundException e) {
-        log.error("Вещь не найдена:\n" + e.getMessage());
+        log.error("Вещь не найдена:\n{}", e.getMessage());
         return e.getMessage();
     }
 }

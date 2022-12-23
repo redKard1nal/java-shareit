@@ -19,28 +19,28 @@ public class UserErrorHandler {
     @ExceptionHandler
     @ResponseStatus(BAD_REQUEST)
     public String validationFailed(final BadRequestException e) {
-        log.error("Возникла ошибка валидации пользователя:\n" + e.getMessage());
+        log.error("Возникла ошибка валидации пользователя:\n{}", e.getMessage());
         return e.getMessage();
     }
 
     @ExceptionHandler
     @ResponseStatus(FORBIDDEN)
     public String accessDenied(final AccessDeniedException e) {
-        log.error("Возникла ошибка доступа к пользователю\n" + e.getMessage());
+        log.error("Возникла ошибка доступа к пользователю\n{}", e.getMessage());
         return e.getMessage();
     }
 
     @ExceptionHandler
     @ResponseStatus(NOT_FOUND)
     public String notFound(final NotFoundException e) {
-        log.error("Возникла ошибка с поиском пользователя:\n" + e.getMessage());
+        log.error("Возникла ошибка с поиском пользователя:\n{}", e.getMessage());
         return e.getMessage();
     }
 
     @ExceptionHandler
     @ResponseStatus(CONFLICT)
     public String conflict(final ConflictException e) {
-        log.error("Возникла ошибка совпадения данных пользователей:\n" + e.getMessage());
+        log.error("Возникла ошибка совпадения данных пользователей:\n{}", e.getMessage());
         return e.getMessage();
     }
 }
