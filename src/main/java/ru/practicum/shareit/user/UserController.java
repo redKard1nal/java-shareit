@@ -25,7 +25,7 @@ public class UserController {
 
     @PostMapping
     public User add(@RequestBody @Valid UserDto userDto) {
-        validate(userDto);
+        throwIfNotValid(userDto);
         return userService.add(userDto);
     }
 
@@ -50,7 +50,7 @@ public class UserController {
         return userService.getAll();
     }
 
-    private void validate(UserDto userDto) throws BadRequestException {
+    private void throwIfNotValid(UserDto userDto) throws BadRequestException {
         if (userDto.getName() == null || userDto.getName().isBlank()) {
             throw new BadRequestException("Не указано имя пользователя.");
         }
