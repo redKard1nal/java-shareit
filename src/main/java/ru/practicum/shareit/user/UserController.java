@@ -2,7 +2,7 @@ package ru.practicum.shareit.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shareit.exception.ValidationException;
+import ru.practicum.shareit.exception.BadRequestException;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.model.User;
 import ru.practicum.shareit.user.service.UserService;
@@ -50,12 +50,12 @@ public class UserController {
         return userService.getAll();
     }
 
-    private void validate(UserDto userDto) throws ValidationException {
+    private void validate(UserDto userDto) throws BadRequestException {
         if (userDto.getName() == null || userDto.getName().isBlank()) {
-            throw new ValidationException("Не указано имя пользователя.");
+            throw new BadRequestException("Не указано имя пользователя.");
         }
         if (userDto.getEmail() == null || userDto.getEmail().isBlank()) {
-            throw new ValidationException("Не указан e-mail пользователя.");
+            throw new BadRequestException("Не указан e-mail пользователя.");
         }
     }
 }

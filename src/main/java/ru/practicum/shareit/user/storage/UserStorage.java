@@ -34,4 +34,9 @@ public class UserStorage {
     public int getId() {
         return ++availableId;
     }
+
+    public boolean isExistByEmail(String eMail) {
+        return users.values().stream()
+                .anyMatch(e -> e.getEmail().equals(eMail));
+    }
 }

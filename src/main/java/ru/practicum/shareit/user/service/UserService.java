@@ -20,7 +20,9 @@ public class UserService {
     }
 
     public User add(UserDto userDto) {
-        validateEmail(userDto.getEmail());
+        if (userStorage.isExistByEmail(userDto.getEmail())) {
+            throw new ConflictException("Пользователь с таким e-mail уже существует.");
+        }
         User user = buildUser(userDto, getId());
         return userStorage.addUser(user);
     }
@@ -31,7 +33,9 @@ public class UserService {
         }
         User user = userStorage.getUserById(id).get();
         if (userDto.getEmail() != null) {
-            validateEmail(userDto.getEmail());
+            if (userStorage.isExistByEmail(userDto.getEmail())) {
+                throw new ConflictException("Пользователь с таким e-mail уже существует.");
+            }
             user.setEmail(userDto.getEmail());
         }
         if (userDto.getName() != null) {
@@ -68,14 +72,6 @@ public class UserService {
                 .name(userDto.getName())
                 .email(userDto.getEmail())
                 .build();
-    }
-
-    private void validateEmail(String email) {
-        boolean isUnique = userStorage.getUsers().values().stream()
-                .noneMatch(e -> e.getEmail().equals(email));
-        if (!isUnique) {
-            throw new ConflictException("Пользователь с таким e-mail уже существует.");
-        }
     }
 
     private int getId() {

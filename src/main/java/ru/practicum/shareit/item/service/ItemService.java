@@ -9,7 +9,6 @@ import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.item.storage.ItemStorage;
 import ru.practicum.shareit.user.service.UserService;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -49,16 +48,17 @@ public class ItemService {
         if (itemDto.getDescription() != null) {
             item.setDescription(itemDto.getDescription());
         }
+
         return itemStorage.addItem(item);
     }
 
-    public Collection<Item> getMyItems(int ownerId) {
+    public List<Item> getMyItems(int ownerId) {
         return itemStorage.getItems().values().stream()
                 .filter(item -> item.getOwner() == ownerId)
                 .collect(Collectors.toList());
     }
 
-    public Collection<Item> searchForItems(String text) {
+    public List<Item> searchForItems(String text) {
         if (text == null || text.isBlank()) {
             return List.of();
         }
